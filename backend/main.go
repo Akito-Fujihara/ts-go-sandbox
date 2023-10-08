@@ -1,15 +1,16 @@
 package main
 
 import (
-	"net/http"
-
+	"github.com/Akito-Fujihara/ts-go-sandbox/controller"
+	"github.com/Akito-Fujihara/ts-go-sandbox/model"
 	"github.com/labstack/echo/v4"
 )
 
 func main() {
 	e := echo.New()
-	e.GET("/", func(c echo.Context) error {
-		return c.String(http.StatusOK, "Hello, World!")
-	})
+	db, _ := model.DB.DB()
+	defer db.Close()
+
+	e.POST("/users", controller.CreateUser)
 	e.Logger.Fatal(e.Start(":8080"))
 }
