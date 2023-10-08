@@ -25,14 +25,17 @@ services:
     ports:
       - 3306:3306
 
-  backned:
-    build: ./docker/backend
-    container_name: backned
+  backend:
+    build:
+      context: ./
+      dockerfile: docker/backend/Dockerfile
+    container_name: backend
     working_dir: /backend
     volumes:
       - ./backend:/backend
+    # command: bash -c "go run main.go"
     tty: true
     ports:
-      - "8000:8000"
+      - "8080:8080"
     depends_on:
       - db

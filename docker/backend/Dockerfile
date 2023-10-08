@@ -6,4 +6,7 @@ RUN go install golang.org/x/tools/gopls@latest
 RUN go install github.com/ramya-rao-a/go-outline@latest
 RUN go install github.com/cosmtrek/air@latest
 
-WORKDIR /go/src
+# go のパッケージを install
+WORKDIR /backend
+COPY ./backend/go.mod ./backend/go.sum ./
+RUN go mod download && go mod verify
