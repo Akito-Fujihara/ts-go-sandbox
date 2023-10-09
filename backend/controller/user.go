@@ -23,7 +23,6 @@ func CreateUser(c echo.Context) error {
 func GetUsers(c echo.Context) error {
 	users := []model.User{}
 	model.DB.Find(&users)
-	fmt.Println(users)
 	return c.JSON(http.StatusOK, users)
 }
 
@@ -38,10 +37,22 @@ func GetUser(c echo.Context) error {
 
 func UpdateUser(c echo.Context) error {
 	user := model.User{}
+	id := c.Param("id")
+
+	if err := model.DB.First(&user, id).Error; err != nil {
+		if errors.Is(err, gorm.ErrRecordNotFound) {
+			return c.JSON(http.StatusNotFound, "Record Not found")
+		}
+
+		return err
+	}
 	if err := c.Bind(&user); err != nil {
 		return err
 	}
-	model.DB.Save(&user)
+
+	if err := model.DB.Updates(&user).Error; err != nil {
+		return err
+	}
 	return c.JSON(http.StatusOK, user)
 }
 
@@ -51,7 +62,7 @@ func DeleteUser(c echo.Context) error {
 
 	if err := model.DB.First(&user, id).Error; err != nil {
 		if errors.Is(err, gorm.ErrRecordNotFound) {
-			return c.JSON(http.StatusNotFound, " not found")
+			return c.JSON(http.StatusNotFound, "Record Not found")
 		}
 
 		return err
