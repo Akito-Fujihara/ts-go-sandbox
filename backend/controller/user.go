@@ -2,7 +2,6 @@ package controller
 
 import (
 	"errors"
-	"fmt"
 	"net/http"
 
 	"github.com/Akito-Fujihara/ts-go-sandbox/database"
@@ -13,7 +12,6 @@ import (
 
 func CreateUser(c echo.Context) error {
 	user := model.User{}
-	fmt.Println(&user)
 	if err := c.Bind(&user); err != nil {
 		return err
 	}
