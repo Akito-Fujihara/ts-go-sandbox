@@ -1,8 +1,9 @@
-package model
+package database
 
 import (
 	"log"
 
+	"github.com/Akito-Fujihara/ts-go-sandbox/model"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 )
@@ -16,5 +17,7 @@ func init() {
 	if err != nil {
 		log.Fatalln(dsn + " database can't connect")
 	}
-	DB.AutoMigrate(&User{})
+
+	user := model.User{}
+	DB.AutoMigrate(&user)
 }
