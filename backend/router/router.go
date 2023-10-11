@@ -19,6 +19,7 @@ func NewRouter() *echo.Echo {
 	e.GET("/todos/:id", controller.GetTask)
 	e.POST("/todos", controller.CreateTask)
 	e.PUT("/todos/:id", controller.UpdateTask)
+	e.DELETE("/todos/:id", controller.DeleteTask)
 
 	return e
 }

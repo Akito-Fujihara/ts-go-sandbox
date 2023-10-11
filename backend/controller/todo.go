@@ -54,3 +54,20 @@ func UpdateTask(c echo.Context) error {
 	}
 	return c.JSON(http.StatusOK, todo)
 }
+
+func DeleteTask(c echo.Context) error {
+	todo := model.Todo{}
+	id := c.Param("id")
+
+	if err := database.DB.First(&todo, id).Error; err != nil {
+		if errors.Is(err, gorm.ErrRecordNotFound) {
+			return c.JSON(http.StatusNotFound, "Record Not found")
+		}
+
+		return err
+	}
+	if err := database.DB.Delete(&todo).Error; err != nil {
+		return err
+	}
+	return c.JSON(http.StatusOK, todo)
+}
