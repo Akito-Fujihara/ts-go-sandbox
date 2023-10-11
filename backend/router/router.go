@@ -8,12 +8,6 @@ import (
 func NewRouter() *echo.Echo {
 	e := echo.New()
 
-	e.GET("/users", controller.GetUsers)
-	e.GET("/users/:id", controller.GetUser)
-	e.POST("/users", controller.CreateUser)
-	e.PUT("/users/:id", controller.UpdateUser)
-	e.DELETE("/users/:id", controller.DeleteUser)
-
 	// TODO
 	e.GET("/todos", controller.GetTasks)
 	e.GET("/todos/:id", controller.GetTask)
