@@ -20,4 +20,7 @@ func init() {
 
 	user := model.User{}
 	DB.AutoMigrate(&user)
+
+	todo := model.Todo{}
+	DB.AutoMigrate(&todo)
 }
