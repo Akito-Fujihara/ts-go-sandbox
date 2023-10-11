@@ -18,9 +18,6 @@ func init() {
 		log.Fatalln(dsn + " database can't connect")
 	}
 
-	user := model.User{}
-	DB.AutoMigrate(&user)
-
 	todo := model.Todo{}
 	DB.AutoMigrate(&todo)
 }
