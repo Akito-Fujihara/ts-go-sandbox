@@ -16,3 +16,18 @@ func CreateTask(c echo.Context) error {
 	database.DB.Create(&todo)
 	return c.JSON(http.StatusCreated, todo)
 }
+
+func GetTasks(c echo.Context) error {
+	todos := []model.Todo{}
+	database.DB.Find(&todos)
+	return c.JSON(http.StatusOK, todos)
+}
+
+func GetTask(c echo.Context) error {
+	todo := model.Todo{}
+	if err := c.Bind(&todo); err != nil {
+		return err
+	}
+	database.DB.Take(&todo)
+	return c.JSON(http.StatusOK, todo)
+}
