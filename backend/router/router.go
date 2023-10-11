@@ -14,5 +14,8 @@ func NewRouter() *echo.Echo {
 	e.PUT("/users/:id", controller.UpdateUser)
 	e.DELETE("/users/:id", controller.DeleteUser)
 
+	// TODO
+	e.POST("/todos", controller.CreateTask)
+
 	return e
 }
