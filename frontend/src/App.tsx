@@ -1,5 +1,11 @@
+import { TodoTitle }  from "./components/TodoTitle";
+
 function App() {
-  return <p>これからTODOアプリを実装します！</p>;
+  return (
+    <>
+      <TodoTitle title="TODO Application" as="h1"/>
+    </>
+  );
 }
 
 export default App;
