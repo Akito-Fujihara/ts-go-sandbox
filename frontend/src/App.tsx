@@ -1,10 +1,8 @@
-import { TodoTitle }  from "./components/TodoTitle";
-
 function App() {
   return (
-    <>
-      <TodoTitle title="TODO Application" as="h1"/>
-    </>
+    <div className="App">
+      <h1>Hello World!!</h1>
+    </div>
   );
 }
 
